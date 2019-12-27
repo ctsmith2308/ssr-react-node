@@ -10,6 +10,6 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   },
-  externals: [nodeExternals()],
+  externals: [nodeExternals()], // nodeExternals only runs in a server environment not web
   ...baseConfig
 };
