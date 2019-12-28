@@ -1,4 +1,6 @@
 import express from "express";
+import { matchRoutes } from "react-router-config";
+import Routes from "./client/Routes";
 import renderApp from "./helpers/renderApp";
 import createStore from "./helpers/createStore";
 
@@ -7,6 +9,9 @@ app.use(express.static("public"));
 
 app.get("*", (req, res) => {
   const store = createStore();
+  matchRoutes(Routes, req.path).map(({ route }) => {
+    return route.loadData ? route.loadData() : null;
+  });
   res.send(renderApp(req, store));
 });
 
