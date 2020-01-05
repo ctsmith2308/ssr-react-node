@@ -12,8 +12,10 @@ app.get("*", (req, res) => {
   const promises = matchRoutes(Routes, req.path).map(({ route }) => {
     return route.loadData ? route.loadData(store) : null;
   });
-  console.log(promises);
-  res.send(renderApp(req, store));
+
+  Promise.all(promises).then(() => {
+    res.send(renderApp(req, store));
+  });
 });
 
 app.listen(3000, () => {
