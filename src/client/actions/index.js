@@ -9,3 +9,14 @@ export const fetchUsers = () => async (dispatch, getStore, api) => {
     payload: res.data
   });
 };
+export const FETCH_CURRENT_USER = "fetch_current_user";
+
+export const fetchCurrentUser = () => async (dispatch, getStore, api) => {
+  // const res = await fetch("http://react-ssr-api.herokuapp.com/users");
+  // const data = await res.json();
+  const res = await api.get("/current_user");
+  dispatch({
+    type: FETCH_CURRENT_USER,
+    payload: res.data
+  });
+};
