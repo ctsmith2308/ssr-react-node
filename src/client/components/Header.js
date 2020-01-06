@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Header = ({ auth }) => {
-  console.log("wat is my status", auth);
   const authButton = auth ? (
     <a href="/api/logout">Logout</a>
   ) : (
-    <a href="/api/auth/google">Login</a>
+    <a href="/api/auth/google/">Login</a>
   );
 
   return (
